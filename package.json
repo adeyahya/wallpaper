@@ -1,0 +1,27 @@
+{
+  "name": "wallpaper",
+  "version": "1.0.0",
+  "description": "Dont feel boring with your desktop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  },
+  "dependencies": {
+    "electron-settings": "^3.1.1",
+    "superagent": "^3.6.0",
+    "wallpaper": "^2.5.0"
+  }
+}
