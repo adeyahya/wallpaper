@@ -1,6 +1,7 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+const settings = require('electron-settings');
 let appIcon = null
 const ipc = require('electron').ipcRenderer
 let trayOn = false
@@ -9,22 +10,12 @@ const Unsplash = require('./src/unsplash');
 const unsplash = new Unsplash(require('./config').app_id);
 unsplash.getRandom();
 
-document.getElementById('minimize').addEventListener('click', function() {
-  if (trayOn) {
-    trayOn = false
-    // document.getElementById('tray-countdown').innerHTML = ''
-    ipc.send('remove-tray')
-  } else {
-    trayOn = true
-    const message = 'Click demo again to remove.'
-    // document.getElementById('tray-countdown').innerHTML = message
-    ipc.send('put-in-tray')
-  }
-})
+document.getElementById('interval-value').value = settings.get('global.interval')
 
-// Tray removed from context menu on icon
-ipc.on('tray-removed', function () {
-  ipc.send('remove-tray')
-  trayOn = false
-  // document.getElementById('tray-countdown').innerHTML = ''
+document.getElementById('interval').addEventListener('submit', function(e) {
+  e.preventDefault();
+  settings.set('global', {
+    interval: document.getElementById('interval-value').value
+  })
+  ipc.send('setting-saved')
 })

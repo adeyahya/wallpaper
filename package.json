@@ -1,10 +1,11 @@
 {
-  "name": "wallpaper",
+  "name": "wallsplash",
   "version": "1.0.0",
   "description": "Dont feel boring with your desktop",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager ./ --platform=darwin --arch=x64 --out=out --icon=./icon.icns --overwrite"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -14,10 +15,9 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "~1.6.2",
+    "electron-packager": "^9.0.0"
   },
   "dependencies": {
     "electron-settings": "^3.1.1",

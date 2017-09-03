@@ -1,0 +1,53 @@
+@import 'sass/variables';
+@import 'sass/typography';
+@import 'sass/background';
+
+.container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  // background: rgba(0, 0, 0, 0.17);
+  color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 40px 50px 80px;
+  width: 450px;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  box-sizing: initial;
+  font-size: 2rem;
+  input.form-control {
+    flex: 1 auto;
+    display: block;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: none;
+    padding: 0 20px;
+    box-sizing: content-box;
+    font-size: 1.2rem;
+    // text-align: center;
+    outline: none;
+  }
+
+  .input-group-btn {
+    flex: 1 auto;
+    button.btn {
+      width: 100%;
+      border-radius: 0;
+      border: none;
+      display: block;
+      padding: 10px 40px;
+      font-size: 1.2rem;
+      line-height: 2rem;
+      background: white;
+      border-left: solid #d0d0d0 1px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      outline: none;
+    }
+  }
+}

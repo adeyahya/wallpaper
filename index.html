@@ -3,29 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <link rel="stylesheet" href="./bootstrap.min.css">
-    <style>
-      body {
-        padding-top: 100px;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
-    <nav class="navbar fixed-top navbar-light bg-light">
-      <a class="navbar-brand" href="#">Fixed top</a>
-    </nav>
     <div class="container">
       <h1 class="display-2 text-center">Wallpaper</h1>
-      <hr>
+      <p style="padding: 0 50px;margin-top: -15px;margin-bottom: 30px;">
+        Collections of beautifull images from Unsplash.com that can inspire you everyday!
+      </p>
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" id="minimize" type="button">Go!</button>
-            </span>
-          </div>
+          <form id="interval">
+            <div class="input-group">
+              <input type="number" class="form-control" id="interval-value" placeholder="number in minute" aria-label="number in minute">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">save</button>
+              </span>
+            </div>
+          </form>
         </div>
         <div class="col-md-3"></div>
       </div>
