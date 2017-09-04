@@ -1,35 +1,34 @@
-const electron = require('electron')
-// Module to control application life.
-const app = electron.app
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
-
 const path = require('path')
 const url = require('url')
-
-const ipc = electron.ipcMain
-const dialog = electron.dialog
-const Menu = electron.Menu
-const Tray = electron.Tray
-const nativeImage = electron.nativeImage
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+  Menu,
+  Tray,
+  nativeImage
+} = require('electron')
 
 const settings = require('electron-settings');
 let appIcon = null
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow = null
+let force_quit = false
 
-app.dock.hide();
+// app.dock.hide();
 
 function createWindow () {
   // Create the browser window.
+  let self = this
   mainWindow = new BrowserWindow({
-    width: 450,
+    width: 1000,
     height: 750,
-    resizable: false,
+    // resizable: false,
     fullscreenable: false,
-    title: "Wallpaper",
+    title: "WallSplash!",
     icon:'./IconTemplate.png'
   })
 
@@ -49,11 +48,18 @@ function createWindow () {
   });
 
   mainWindow.on('close', function(event) {
-    if( !app.isQuiting){
+    if (app.quitting) {
+      app.quit()
+    } else {
       event.preventDefault()
       mainWindow.hide()
     }
-    return false;
+
+    app.quitting = true
+  })
+
+  mainWindow.on('show', () => {
+    app.quitting = false
   })
 }
 
@@ -69,8 +75,8 @@ function createTray() {
     }, {
       label: 'Quit',
       click: function() {
-        app.isQuiting = true
-        app.quit();
+        app.quitting = true
+        app.quit()
       }
     }
   ])
@@ -85,7 +91,10 @@ app.on('ready', () => {
   // const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png'
   createWindow()
   createTray()
-  // mainWindow.hide()
+})
+
+app.on('before-quit', () => {
+  app.quitting = true
 })
 
 // Quit when all windows are closed.
@@ -103,12 +112,13 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
     createTray()
+  } else {
+    mainWindow.show();
   }
+
+  app.quitting = false
 })
 
-ipc.on('setting-saved', function (event) {
+ipcMain.on('setting-saved', function (event) {
   dialog.showErrorBox('Information', 'Setting Saved!')
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
