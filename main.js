@@ -18,7 +18,7 @@ let appIcon = null
 let mainWindow = null
 let force_quit = false
 
-// app.dock.hide();
+app.dock.hide();
 
 function createWindow () {
   // Create the browser window.
