@@ -1,5 +1,5 @@
 {
-  "name": "WallSplash!",
+  "name": "wallsplash",
   "version": "1.0.0",
   "description": "Dont feel boring with your desktop",
   "main": "main.js",
@@ -16,12 +16,12 @@
     "demo"
   ],
   "devDependencies": {
-    "electron": "~1.6.2",
     "electron-packager": "^9.0.0"
   },
   "dependencies": {
+    "electron": "^2.0.2",
     "electron-settings": "^3.1.1",
     "superagent": "^3.6.0",
-    "wallpaper": "^2.5.0"
+    "wallpaper": "^3.0.0"
   }
 }
