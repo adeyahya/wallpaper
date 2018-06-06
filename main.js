@@ -18,8 +18,6 @@ let appIcon = null
 let mainWindow = null
 let force_quit = false
 
-app.dock.hide();
-
 function createWindow () {
   // Create the browser window.
   let self = this
@@ -43,8 +41,9 @@ function createWindow () {
   // mainWindow.webContents.openDevTools()
 
   mainWindow.on('minimize',function(event){
-    event.preventDefault()
-    mainWindow.hide()
+    event.preventDefault();
+    app.dock.hide();
+    mainWindow.hide();
   });
 
   mainWindow.on('close', function(event) {
@@ -52,14 +51,16 @@ function createWindow () {
       app.quit()
     } else {
       event.preventDefault()
-      mainWindow.hide()
+      app.dock.hide();
+      mainWindow.hide();
     }
 
-    app.quitting = true
+    app.quitting = true;
   })
 
   mainWindow.on('show', () => {
-    app.quitting = false
+    app.quitting = false;
+    app.dock.show();
   })
 }
 
