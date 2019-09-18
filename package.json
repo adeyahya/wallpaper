@@ -19,7 +19,7 @@
     "electron-packager": "^9.0.0"
   },
   "dependencies": {
-    "electron": "^2.0.2",
+    "electron": "^2.0.8",
     "electron-settings": "^3.1.1",
     "superagent": "^3.6.0",
     "wallpaper": "^3.0.0"
